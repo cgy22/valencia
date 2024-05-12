@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>VALENCIA | 词缀表</title>
+    <link rel="icon" href="https://satorna.github.io/image/webIcon.png">
+	<link rel="stylesheet" href="css/style.css">
+	<script>
+		window.onload = function() {
+			    var loaderContent = document.querySelector('.loader-content');  
+			    var dots = [".", "..", "..."];  
+			    var dotIndex = 0;  
+			    var loaderInterval = setInterval(function() {  
+			        loaderContent.textContent = "📑词缀表正在加载中" + dots[dotIndex];  
+			        dotIndex = (dotIndex + 1) % dots.length; // 循环数组  
+			    }, 500); // 切换间隔时间为0.5秒  
+			    
+		    var loader = document.getElementById('loader');  
+		       
+		        setTimeout(function() {  
+		            loader.style.opacity = '0'; 
+		              
+		            // 等待过渡结束后隐藏加载画面  
+		            setTimeout(function() {  
+		                loader.style.display = 'none';  
+		            }, 500);
+		        }, 500);
+		};
+	</script>
+    <script src="js/tools.js"></script>
+    <script src="js/wordData.js"></script>
+	<script src="js/script.js"></script>
+    <meta charset="utf-8">
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(250, 250, 250);
+            justify-content: center;
+            align-items: center;
+			
+        #alphabet {
+            display: flex;  
+                justify-content: center; /* 水平居中 */  
+                align-items: center; /* 垂直居中（如果需要的话）*/  
+                overflow: auto;  
+                scrollbar-width: none;  
+                border: none;  
+                padding-left: 0%;
+				width: 600px;
+				height: 300px;
+        }
+		@media screen and (max-width: 650px) {
+			#alphabet {
+				display: flex;
+				    justify-content: center; /* 水平居中 */  
+				    align-items: center; /* 垂直居中（如果需要的话）*/  
+				    overflow: auto;  
+				    scrollbar-width: none;  
+				    border: none;  
+				    padding-left: 0%;
+					width: 100%;
+					height: 300px;
+				transform: translate(0%, 0%) scale(0.8);
+			}
+		}
+        #alphabet::-webkit-scrollbar{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+	<!--<div id="loader">
+	    <div class="loader-content">  
+	        📑词缀表正在加载中
+	    </div>  
+	</div>-->
+<nav>
+	<div class="menu">
+		<img style="height: 90%;" src="image/logo_img.png" onclick="redirectToPage()">
+		<div class="menu_links">
+			<a href="index.html" class="link">主站</a>
+			<a href="alphabet.html" class="link">字母表</a>
+			<a href="bwbazencl.html" class="link">词缀表</a>
+			<a href="tondha.html" class="link">时态表</a>
+			<a href="edusrc.html" class="link">学习资源</a>
+			<button class="translate" onclick="window.alert('即将上线。')">翻译</button>
+		</div>
+		<div class="menu_icon" onclick="toggleMenu(this)">
+			<span class="icon"></span>
+			<ul class="menu_content">  
+			    <li><a href="index.html" class="link" style="color: white">主站</a></li>  
+			    <li><a href="alphabet.html" class="link" style="color: white">字母表</a></li>  
+			    <li><a href="bwbazencl.html" class="link" style="color: white">词缀表</a></li>
+				<li><a href="tondha.html" class="link" style="color: white">时态表</a></li>
+				<li><a href="edusrc.html" class="link" style="color: white">学习资源</a></li>
+				<li><a onclick="window.alert('即将上线。')" class="link" style="color: #6499FF;">翻译</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+    <div class="container" id="ctn">
+        <iframe src = "bwbazenclDetail.html" scroll="auto" id="alphabet"></iframe>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+    </div>
+	<a href="index.html" class="link"><p class="documents">⬅️返回首页</p></a>
+	
+</body>
+
+<script>
+    copyright();
+    for (var i = 1; i <= 5; i++) {//自动排列按钮
+        var a = document.getElementById("navbut" + i);
+        a.style.marginLeft = `${250 + i * 80}px`;
+    }
+</script>
+<footer class="footer-copyright">
+    <div class="copyright">
+		<br>
+            <p>所有内容纯属虚构，与现实无关，敬请理性看待</p>
+            <p id="cprt">版权所有 © 2024 DornGames | Version 2.3.2</p>
+            <p>Box3Pro : <u><a href="https://dao3.fun/profile/50450184">@DornGames</a></u>
+             | Github : <u><a href="https://github.com/dornhub">@dornhub</a></u>
+             | Author(Box3Pro) : <u><a href="https://dao3.fun/profile/448769">@云游de鸽者</a></u>
+            </p>
+			<p>Produced by @云游de鸽者 | Adapted by 221301.</p>
+			<br>
+	</div>
+</footer>
+
+</html>

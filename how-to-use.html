@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN" >
+<head>
+<meta charset="UTF-8">
+<title>VALENCIA | 瓦来西雅大辞典</title>
+<link rel="icon" href="https://satorna.github.io/image/webIcon.png">
+<link rel="stylesheet" href="css/style.css">
+<style>
+	body{
+		background-image: url("image/internet-city.jpg");
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
+	}
+</style>
+<script>
+		window.onload = function() {
+			    var loaderContent = document.querySelector('.loader-content');  
+			    var dots = [".", "..", "..."];  
+			    var dotIndex = 0;  
+			    var loaderInterval = setInterval(function() {  
+			        loaderContent.textContent = "📖加载中" + dots[dotIndex];  
+			        dotIndex = (dotIndex + 1) % dots.length; // 循环数组  
+			    }, 500); // 切换间隔时间为0.5秒  
+			    
+		    var loader = document.getElementById('loader');  
+		       
+		        setTimeout(function() {  
+		            loader.style.opacity = '0'; 
+		              
+		            // 等待过渡结束后隐藏加载画面  
+		            setTimeout(function() {  
+		                loader.style.display = 'none';  
+		            }, 500);
+		        }, 500);
+		};
+		
+	</script>
+</head>
+<body>
+	<!--<div id="loader">
+	    <div class="loader-content">  
+	        📖加载中
+	    </div>  
+	</div>-->
+<nav>
+	<div class="menu">
+		<img style="height: 90%;" src="image/logo_img.png" onclick="redirectToPage()">
+		<div class="menu_links">
+			<a href="index.html" class="link">首页</a>
+			<a href="alphabet.html" class="link">字母表</a>
+			<a href="bwbazencl.html" class="link">词缀表</a>
+			<a href="tondha.html" class="link">时态表</a>
+			<a href="edusrc.html" class="link">学习资源</a>
+			<button class="translate" onclick="window.alert('即将上线。')">翻译</button>
+		</div>
+		<div class="menu_icon" onclick="toggleMenu(this)">
+			<span class="icon"></span>
+			<ul class="menu_content">  
+			    <li><a href="index.html" class="link" style="color: white">首页</a></li>  
+			    <li><a href="alphabet.html" class="link" style="color: white">字母表</a></li>  
+			    <li><a href="bwbazencl.html" class="link" style="color: white">词缀表</a></li>
+				<li><a href="tondha.html" class="link" style="color: white">时态表</a></li>
+				<li><a href="edusrc.html" class="link" style="color: white">学习资源</a></li>
+				<li><a onclick="window.alert('即将上线。')" class="link" style="color: #6499FF;">翻译</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<br><br><br>
+<section>
+	<br><br>
+	<div style="display:flex; justify-content:center;">
+		<h3>请观看以下视频学习使用瓦莱希雅。</h3>
+	</div>
+	<br>
+	<div style="display:flex; justify-content:center;">
+		<h3>运行瓦莱希雅。</h3>
+	</div>
+<div style="display:flex; justify-content:center;">
+	<video width="65%" controls>
+		<source src="video/open.mp4" type="video/mp4">
+	</video>
+</div>
+<br>
+<div style="display:flex; justify-content:center;">
+		<h3>使用𣿅→中词典。</h3>
+	</div>
+<div style="display:flex; justify-content:center;">
+	<video width="65%" controls>
+		<source src="video/search-dc.mp4" type="video/mp4">
+	</video>
+</div>
+<br>
+<div style="display:flex; justify-content:center;">
+		<h3>使用中→𣿅词典。</h3>
+	</div>
+<div style="display:flex; justify-content:center;">
+	<video width="65%" controls>
+		<source src="video/search-cd.mp4" type="video/mp4">
+	</video>
+</div>
+</section>
+
+	<a href="help-center.html" class="link"><p class="documents">⬅️返回帮助中心</p></a>
+<script src="js/script.js"></script>
+<script src="js/tools.js"></script>
+<script src="js/wordData.js"></script>
+
+
+</body>
+
+<footer class="footer-copyright">
+    <div class="copyright">
+		<br>
+            <p>所有内容纯属虚构，与现实无关，敬请理性看待</p>
+            <p id="cprt">版权所有 © 2024 DornGames | Version 2.3.5</p>
+            <p>Box3Pro : <u><a href="https://dao3.fun/profile/50450184">@DornGames</a></u>
+             | Github : <u><a href="https://github.com/dornhub">@dornhub</a></u>
+             | Author(Box3Pro) : <u><a href="https://dao3.fun/profile/448769">@云游de鸽者</a></u>
+            </p>
+			<p id="ver"></p>
+			<p>Produced by @云游de鸽者 | Adapted by 221301.</p>
+			<br>
+	</div>
+</footer>
+
+</html>

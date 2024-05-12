@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>VALENCIA | 更新说明与反馈中心</title>
+    <link rel="icon" href="https://satorna.github.io/image/webIcon.png">
+	<link rel="stylesheet" href="css/style.css">
+	<script>
+		window.onload = function() {
+			    var loaderContent = document.querySelector('.loader-content');  
+			    var dots = [".", "..", "..."];  
+			    var dotIndex = 0;  
+			    var loaderInterval = setInterval(function() {  
+			        loaderContent.textContent = "🗂️加载中" + dots[dotIndex];  
+			        dotIndex = (dotIndex + 1) % dots.length; // 循环数组  
+			    }, 500); // 切换间隔时间为0.5秒  
+			    
+		    var loader = document.getElementById('loader');  
+		       
+		        setTimeout(function() {  
+		            loader.style.opacity = '0'; 
+		              
+		            // 等待过渡结束后隐藏加载画面  
+		            setTimeout(function() {  
+		                loader.style.display = 'none';  
+		            }, 500);
+		        }, 500);
+		};
+		
+	</script>
+	<script src="js/script.js"></script>
+    <script src="js/tools.js"></script>
+    <script src="js/wordData.js"></script>
+    <meta charset="utf-8">
+    <style>
+        @charset "utf-8";
+
+        body {
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+			background-image: url("image/bg.png");
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+	<!--<div id="loader">
+	    <div class="loader-content">  
+	        🗂️加载中
+	    </div>  
+	</div>-->
+ <nav>
+ 	<div class="menu">
+ 		<img style="height: 90%;" src="image/logo_img.png" onclick="redirectToPage()">
+ 		<div class="menu_links">
+ 			<a href="index.html" class="link">首页</a>
+ 			<a href="alphabet.html" class="link">字母表</a>
+ 			<a href="bwbazencl.html" class="link">词缀表</a>
+ 			<a href="tondha.html" class="link">时态表</a>
+ 			<a href="edusrc.html" class="link">学习资源</a>
+ 			<button class="translate" onclick="window.alert('即将上线。')">翻译</button>
+ 		</div>
+ 		<div class="menu_icon" onclick="toggleMenu(this)">
+ 			<span class="icon"></span>
+ 			<ul class="menu_content">  
+ 			    <li><a href="index.html" class="link" style="color: white">首页</a></li>  
+ 			    <li><a href="alphabet.html" class="link" style="color: white">字母表</a></li>  
+ 			    <li><a href="bwbazencl.html" class="link" style="color: white">词缀表</a></li>
+ 				<li><a href="tondha.html" class="link" style="color: white">时态表</a></li>
+ 				<li><a href="edusrc.html" class="link" style="color: white">学习资源</a></li>
+ 				<li><a onclick="window.alert('即将上线。')" class="link" style="color: #6499FF;">翻译</a></li>
+ 			</ul>
+ 		</div>
+ 	</div>
+ </nav>
+
+    <div class="container" id="ctn">
+        <div>
+			<br><br><br><br><br><br><br>
+		<h1>版本2.3.5更新说明</h1>
+		<h2>改进</h2>
+		<p>1.去除加载页面。</p>
+		<p>2.改变部分页面背景。</p>
+		<p>3.网络检测小组件已完全修复，可以正常工作，实时刷新。未连接到Internet时会将组件背景改为红色。</p>
+		<p>4.添加回了部分缺失的视频。</p>
+		<p>5.继续改进部分页面的页脚遮挡问题。</p>
+		<p>6.在下载界面中添加下载进度说明。</p>
+		<br><br>
+		<h2>已知问题</h2>
+		<p>1.当搜索的单词以“s”结尾时，辞典会误判为复数形式，搜索页面的单词会向左上角偏移。解决难度：极高。</p>
+		<p>2.各种表在调整显示窗口大小时不会很好的适应，因为我们偷懒了。解决难度：中。</p>
+		<p>3.“搜索页面”的外观没有与其他页面统一。解决难度：极高。</p>
+		<p>4.“词缀表”的部分字体未统一。解决难度：低。</p>
+		<p>5.字母表中部分特殊字母在线上版中无法正常显示。解决难度：未知。</p>
+		<p>6.手机版无法下载更新内容。解决难度：中。</p>
+		<p>7.搜索时无法在下拉栏中检索到词汇的形容词形式等，但是实际可以搜索到该词汇.</p>
+		<p> （例如trojika的形容词形式为trojikafak，虽然下拉栏中不会显示该词汇，但是点击“搜索”后仍然可以搜索到该词汇）。解决难度：这算不算个特性？</p>
+		<br><br><br><br><br>
+		</div>
+		<br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+	<div class="container" id="ctn">
+	<br><br><br>
+	</div>
+	<a href="help-center.html" class="link"><p class="documents">⬅️返回帮助中心</p></a>
+	
+</body>
+<br><br><br>
+<script>
+    copyright();
+    for (var i = 1; i <= 5; i++) {//自动排列按钮
+        var a = document.getElementById("navbut" + i);
+        a.style.marginLeft = `${250 + i * 80}px`;
+        console.log(a.style.marginLeft);
+    }
+</script>
+<footer class="footer-copyright">
+    <div class="copyright">
+		<br>
+            <p>所有内容纯属虚构，与现实无关，敬请理性看待</p>
+            <p id="cprt">版权所有 © 2024 DornGames | Version 2.3.5</p>
+            <p>Box3Pro : <u><a href="https://dao3.fun/profile/50450184">@DornGames</a></u>
+             | Github : <u><a href="https://github.com/dornhub">@dornhub</a></u>
+             | Author(Box3Pro) : <u><a href="https://dao3.fun/profile/448769">@云游de鸽者</a></u>
+            </p>
+			
+			<p>Produced by @云游de鸽者 | Adapted by 221301.</p>
+			<br>
+	</div>
+</footer>
+</html>

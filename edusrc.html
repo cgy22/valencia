@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN" >
+<head>
+<meta charset="UTF-8">
+<title>VALENCIA | 瓦来西雅大辞典</title>
+<link rel="icon" href="https://satorna.github.io/image/webIcon.png">
+<link rel="stylesheet" href="css/style.css">
+	<script>
+		window.onload = function() {
+			    var loaderContent = document.querySelector('.loader-content');  
+			    var dots = [".", "..", "..."];  
+			    var dotIndex = 0;  
+			    var loaderInterval = setInterval(function() {  
+			        loaderContent.textContent = "📚学习资源正在加载中" + dots[dotIndex];  
+			        dotIndex = (dotIndex + 1) % dots.length; // 循环数组  
+			    }, 500); // 切换间隔时间为0.5秒  
+			    
+		    var loader = document.getElementById('loader');  
+		       
+		        setTimeout(function() {  
+		            loader.style.opacity = '0'; 
+		              
+		            // 等待过渡结束后隐藏加载画面  
+		            setTimeout(function() {  
+		                loader.style.display = 'none';  
+		            }, 500);
+		        }, 500);
+		};
+		
+	</script>
+	<script src="js/script.js"></script>
+    <script src="js/tools.js"></script>
+    <script src="js/wordData.js"></script>
+<style>
+	body{
+		background-image: url("image/a35k.jpg");
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
+	}
+</style>
+</head>
+<body>
+	<!--<div id="loader">
+	    <div class="loader-content">  
+	        📚学习资源正在加载中
+	    </div>  
+	</div>-->
+<nav>
+	<div class="menu">
+		<img style="height: 90%;" src="image/logo_img.png" onclick="redirectToPage()">
+		<div class="menu_links">
+			<a href="index.html" class="link">首页</a>
+			<a href="alphabet.html" class="link">字母表</a>
+			<a href="bwbazencl.html" class="link">词缀表</a>
+			<a href="tondha.html" class="link">时态表</a>
+			<a href="edusrc.html" class="link">学习资源</a>
+			<button class="translate" onclick="window.alert('即将上线。')">翻译</button>
+		</div>
+		<div class="menu_icon" onclick="toggleMenu(this)">
+			<span class="icon"></span>
+			<ul class="menu_content">  
+			    <li><a href="index.html" class="link" style="color: white">首页</a></li>  
+			    <li><a href="alphabet.html" class="link" style="color: white">字母表</a></li>  
+			    <li><a href="bwbazencl.html" class="link" style="color: white">词缀表</a></li>
+				<li><a href="tondha.html" class="link" style="color: white">时态表</a></li>
+				<li><a href="edusrc.html" class="link" style="color: white">学习资源</a></li>
+				<li><a onclick="window.alert('即将上线。')" class="link" style="color: #6499FF;">翻译</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<br><br><br><br><br>
+<section>
+	<div style="display:flex; justify-content:center;">
+		<h3>请注意：此页面的资源需要网络连接才能观看。想要流畅观看，必须要有<u>“良好”且“合理”</u>的网络环境！</h3>
+	</div>
+	<div class="article">
+		<div>
+		 <br>
+		 <h2>古𣿅语考试听力部分（D1级与D2级）</h2>
+		 <br>
+		 <a href="antiqueIrelav-D1.html"><button class="translate">考试！😇</button></a>
+		</div>
+	</div>
+	<div class="article">
+			<div>
+			<br>
+			<h2>Donhfuc Peehpuie.mp3</h2>
+			<br>
+			<p>早期𣿅国国歌，中𣿅双语。</p>
+			<br>
+			<a href="donhfuc-peehpuie.html"><button class="translate">收听！🎧</button></a>
+		</div>
+	</div>
+	<div class="article">
+			<div>
+			<br>
+			<h2>2023.11失踪打吗.mp4</h2>
+			<br>
+			<p>头上三尺有监控，身前九寸是原神。</p>
+			<br>
+			<a href="2023.11missing.html"><button class="translate">看戏！🍿</button></a>
+		</div>
+	</div>
+	<div class="article">
+			<div>
+			<br>
+			<h2>刺梨.mp4</h2>
+			<br>
+			<p>刺梨汁，𣿅国国宴指定饮品。</p>
+			<br>
+			<a href="pear.html"><button class="translate">观看！📺</button></a>
+		</div>
+	</div>
+	<div class="article">
+			<div>
+			<br>
+			<h2>刺梨花开-𣿅国现国歌</h2>
+			<br>
+			<p>提供多种版本。</p>
+			<br>
+			<a href="national-anthem.html"><button class="translate">起立！🧍🏻‍♂️</button></a>
+		</div>
+	</div>
+	<div class="article">
+			<div>
+			<br>
+			<h2>护卫队战歌</h2>
+			<br>
+			<p>𣿅国护卫队陆军队歌。</p>
+			<br>
+			<a href="march-of-the-army.html"><button class="translate">敬礼！🫡</button></a>
+		</div>
+	</div>
+	<div class="article">
+			<div>
+			<h2>暂无更多</h2>
+		</div>
+	</div>
+</section>
+<p id="status">🛜网络状态：检测中...</p>
+
+	<a href="index.html" class="link"><p class="documents">⬅️返回首页</p></a>
+<script>
+	
+function checkConnectivity() {  
+  var img = new Image();  
+  var statusElement = document.getElementById('status'); // 确保您获取了status元素  
+  
+  img.onload = function() {  
+    statusElement.textContent = '🛜您已连接到 Internet';  
+    statusElement.classList.remove('offline');  
+  };  
+  
+  img.onerror = function() {  
+    statusElement.textContent = '✖️您尚未连接到 Internet';  
+    statusElement.classList.add('offline');  
+  };  
+  
+  // 尝试加载 Microsoft 的 logo，并添加一个时间戳以防止缓存  
+  var timestamp = Date.now(); // 获取当前时间的时间戳  
+  img.src = 'https://www.microsoft.com/favicon.ico?v2&' + timestamp;  
+}  
+  
+// 每3秒检查一次连通性  
+setInterval(checkConnectivity, 3000);
+
+
+</script>
+
+</body>
+
+<footer class="footer-copyright">
+    <div class="copyright">
+		<br>
+            <p>所有内容纯属虚构，与现实无关，敬请理性看待</p>
+            <p id="cprt">版权所有 © 2024 DornGames | Version 2.3.5</p>
+            <p>Box3Pro : <u><a href="https://dao3.fun/profile/50450184">@DornGames</a></u>
+             | Github : <u><a href="https://github.com/dornhub">@dornhub</a></u>
+             | Author(Box3Pro) : <u><a href="https://dao3.fun/profile/448769">@云游de鸽者</a></u>
+            </p>
+			<p id="ver"></p>
+			<p>Produced by @云游de鸽者 | Adapted by 221301.</p>
+			<br>
+	</div>
+</footer>
+
+</html>

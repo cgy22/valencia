@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>VALENCIA | 瓦来西雅大辞典</title>
+    <link rel="icon" href="https://satorna.github.io/image/webIcon.png">
+	<script>
+		window.onload = function() {
+			    var loaderContent = document.querySelector('.loader-content');  
+			    var dots = [".", "..", "..."];  
+			    var dotIndex = 0;  
+			    var loaderInterval = setInterval(function() {  
+			        loaderContent.textContent = "🔍正在搜索" + dots[dotIndex];  
+			        dotIndex = (dotIndex + 1) % dots.length; // 循环数组  
+			    }, 500); // 切换间隔时间为0.5秒  
+			    
+		    var loader = document.getElementById('loader');  
+		       
+		        setTimeout(function() {  
+		            loader.style.opacity = '0'; 
+		              
+		            // 等待过渡结束后隐藏加载画面  
+		            setTimeout(function() {  
+		                loader.style.display = 'none';  
+		            }, 500);
+		        }, );
+		};
+	</script>
+    <script src="js/script.js"></script>
+    <script src="js/tools.js"></script>
+    <script src="js/wordData.js"></script>
+
+    <meta charset="utf-8">
+    <style>
+        @charset "utf-8";
+
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(226, 226, 236);
+            justify-content: center;
+            align-items: center;
+			overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+.translate{
+	height: 40px;
+	padding: 0 30px;
+	border-radius: 50px;
+	cursor: pointer;
+	box-shadow: 0px 5px 5px rgba(54, 24, 79, 0.5);
+	z-index: 3;
+	color: #6499FF;
+	background-color: white;
+	text-transform: uppercase;
+	font-weight: 600;
+	font-size: 20px;
+	transition: all 0.3s ease;
+}
+.translate:hover{
+	box-shadow: 0px 10px 10px -10px rgba(54, 24, 79, 0.5);
+	transform: translateY(5px);
+	background: #6499FF;
+	color: white;
+}
+
+.menu_content {  
+  display: none;  
+  position: absolute;  
+  top: 100%; /* 定位在菜单图标下方 */  
+  right: 0;  
+  background-color: rgba(242, 172, 8, 0.927);
+  border-radius: 4px;  
+  padding: 10px 0;  
+  z-index: 1000; /* 确保下拉菜单显示在其他内容之上 */  
+  list-style: none; /* 移除默认的列表样式 */  
+  margin: 0;  
+  padding: 0;  
+  width: 200px;
+  box-shadow: 0px 5px 5px rgba(54, 24, 79, 0.5);
+  animation: fadeIn 0.3s ease-in-out; /* 添加入场动画 */  
+}  
+  
+.menu_content li {  
+  padding: 10px 20px; /* 为下拉菜单项添加内边距 */  
+  border-bottom: 1px solid #eee;/* 添加分隔线 */  
+}  
+  
+.menu_content li:last-child {  
+  border-bottom: none; /* 移除最后一个菜单项的分隔线 */  
+}  
+  
+.menu_content li:hover {  
+  background-color: rgb(230, 150, 8);
+   border-radius: 4px/* 鼠标悬停时的背景色 */  
+}  
+
+.menu_content li {  
+  opacity: 0; /* 初始时设置透明度为0 */  
+  animation: fadeIn 0.3s ease-in-out forwards; /* 添加入场动画 */  
+}  
+  
+.menu_content li:nth-child(1) {  
+	animation-delay: 0s; /* 第一个子菜单项立即开始动画 */  
+}  
+  
+.menu_content li:nth-child(2) {  
+  animation-delay: 0.1s; /* 第二个子菜单项延迟0.1秒开始动画 */  
+}  
+  
+.menu_content li:nth-child(3) {  
+	animation-delay: 0.2s; /* 第三个子菜单项延迟0.2秒开始动画 */  
+}  
+
+.menu_content li:nth-child(4) {  
+	animation-delay: 0.3s; /* 第三个子菜单项延迟0.2秒开始动画 */  
+}  
+ 
+.menu_content li:nth-child(5) {
+	animation-delay: 0.4s; /* 第三个子菜单项延迟0.2秒开始动画 */  
+}  
+
+.menu_content li:nth-child(6) {
+	animation-delay: 0.5s; /* 第三个子菜单项延迟0.2秒开始动画 */  
+}  
+   
+
+.menu_content a {  
+  text-decoration: none; /* 移除链接的下划线 */  
+  color: #333; /* 链接文字颜色 */  
+  display: block; /* 使链接占据整行 */  
+  width: 100%; /* 宽度与下拉菜单内容相同 */  
+}  
+  
+/* 入场动画 */  
+@keyframes fadeIn {  
+  0% { opacity: 0; }  
+  100% { opacity: 1; }  
+}  
+  
+/* 显示下拉菜单 */  
+.menu_icon.active .menu_content {  
+  display: block;  
+}
+
+.logo {
+  position: fixed;
+  z-index: 5;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 100%;
+  backdrop-filter: blur(5px);
+}
+.logo img {
+  width: 55%;
+  height: 55%;
+  transform: translateY(-1px);
+  opacity: 0.8;
+}
+
+nav .menu {
+  width: 99%;
+  height: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  box-sizing: border-box;
+  z-index: 3;
+  background-color: rgba(242, 172, 8, 0.927);
+  box-shadow: 0px 5px 5px rgba(54, 24, 79, 0.5);
+  border-radius: 4px;
+}
+nav .menu .website_name {
+  color: #695681;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: 1px;
+  background: white;
+  padding: 4px 8px;
+  border-radius: 2px;
+  opacity: 0.9;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+nav .menu .website_name:hover {
+  opacity: 1;
+}
+nav .menu .menu_links {
+  transition: all 0.4s ease;
+  opacity: 0.9;
+}
+nav .menu .menu_links:hover {
+  opacity: 1;
+}
+@media screen and (max-width: 1100px) {
+  nav .menu .menu_links {
+    display: none;
+  }
+}
+nav .menu .menu_links .link {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-right: 50px;
+  letter-spacing: 2px;
+  position: relative;
+  transition: all 0.3s 0.2s ease;
+}
+nav .menu .menu_links .link:last-child {
+  margin-right: 0;
+}
+nav .menu .menu_links .link:before {
+  content: '';
+  position: absolute;
+  width: 0px;
+  height: 4px;
+  background: linear-gradient(90deg, #16DA49 0%, #6499FF 100%);
+  bottom: -10px;
+  border-radius: 4px;
+  transition: all 0.4s cubic-bezier(0.82, 0.02, 0.13, 1.26);
+  left: 100%;
+}
+nav .menu .menu_links .link:hover {
+  opacity: 1;
+  color: #6499FF;
+}
+nav .menu .menu_links .link:hover:before {
+  width: 40px;
+  left: 0;
+}
+nav .menu .menu_icon {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+@media screen and (max-width: 1100px) {
+  nav .menu .menu_icon {
+    display: flex;
+  }
+}
+nav .menu .menu_icon .icon {
+  width: 24px;
+  height: 2px;
+  background: white;
+  position: absolute;
+}
+nav .menu .menu_icon .icon:before, nav .menu .menu_icon .icon:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  position: absolute;
+  transition: all 0.3s cubic-bezier(0.49, 0.04, 0, 1.55);
+}
+nav .menu .menu_icon .icon:before {
+  transform: translateY(-8px);
+}
+nav .menu .menu_icon .icon:after {
+  transform: translateY(8px);
+}
+nav .menu .menu_icon:hover .icon {
+  background: #FFEDC0;
+}
+nav .menu .menu_icon:hover .icon:before {
+  transform: translateY(-10px);
+}
+nav .menu .menu_icon:hover .icon:after {
+  transform: translateY(10px);
+}
+
+        button:hover {
+            cursor: pointer;
+        }
+
+        #text {
+            font-weight: 100;
+            color: white;
+        }
+
+        sup {
+            font-size: 10px;
+        }
+
+        #title {
+            line-height: 0px;
+        }
+
+        /*#texte{margin-left:15%;}*/
+        #title_don {
+            font-size: 40px;
+        }
+
+        #title_chi {
+            font-size: 30px;
+        }
+
+        #texte_don {
+            font-size: 18px;
+            text-indent: 24px;
+        }
+
+        #texte_chi {
+            font-size: 15px;
+            text-indent: 24px;
+        }
+
+        #bottom_div {
+            background-color: #00000133;
+            text-align: center;
+			margin-left: auto;
+			margin-right: auto;
+            width: 99%;
+            color: rgb(0, 0, 0);
+            font-size: 15px;
+            -webkit-text-stroke: 0.2px rgba(65, 92, 227, 0.651);
+			border-radius: 4px;
+			color: white;
+        }
+
+        a {
+            text-decoration: none;
+            color: rgb(50, 50, 50);
+            text-shadow: 2px 2px 5px rgba(30, 144, 255, 0.5);
+        }
+
+        #br {
+            height: 5px;
+        }
+
+        .intro {
+            border: 3px solid #1e90ff;
+            width: 50%;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(30, 144, 255, 0.25),
+                0 0 20px rgba(30, 144, 255, 0.25),
+                0 0 30px rgba(30, 144, 255, 0.25),
+                0 0 40px rgba(30, 144, 255, 0.25),
+                0 0 100px rgba(30, 144, 255, 0.25),
+                0 0 200px rgba(30, 144, 255, 0.25),
+                0 0 300px rgba(30, 144, 255, 0.1),
+                0 0 400px rgba(30, 144, 255, 0.05);
+            border-image: linear-gradient(to top right, #1565c0, #000, #1565c0) 3;
+        }
+
+        #homeImg {
+            border-radius: 20px;
+        }
+
+        #lines {
+            height: 0px;
+            border: 0.01px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+        }
+
+        #tools {
+            line-height: 0px;
+            border: none;
+            height: 70px;
+            background-color: transparent;
+            width: 100%;
+        }
+
+        #tools p {
+            margin-bottom: 25px;
+        }
+
+        #tools_explain {
+            margin-left: 30px;
+            color: rgb(100, 100, 100);
+            font-size: 15px;
+        }
+
+        #tools_name {
+            margin-left: 30px;
+            color: white;
+            font-size: 25px;
+        }
+
+        #tools_name a:hover {
+            color: rgb(102, 153, 255);
+        }
+
+        #homeImg {
+            cursor: pointer;
+        }
+
+        #bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            /*-o-object-fit: cover;
+            object-fit: cover;
+            -webkit-filter: blur(10px);
+            filter: blur(10px);
+            -webkit-transform: scale(1.2);
+            transform: scale(1.2);*/
+        }
+
+        #copyright {
+            text-align: center;
+            line-height: 10px;
+            font-weight: 100;
+        }
+
+        #introduce {
+            height: 150px;
+        }
+
+        #intro_left_1st {
+            line-height: 0px;
+            margin-left: 50px;
+            position: absolute;
+            left: 0px;
+        }
+
+        #intro_left_2st {
+            line-height: 30px;
+            margin-right: 50px;
+            position: absolute;
+            left: 40%;
+        }
+
+        #intro_left_3st {
+            line-height: 30px;
+            margin-right: 50px;
+            position: absolute;
+            left: 60%;
+        }
+
+        #intro_left_4st {
+            line-height: 30px;
+            margin-right: 50px;
+            position: absolute;
+            right: 10%;
+        }
+
+        #intro_left_1st img {
+            height: 60px;
+        }
+
+        #intro_left_1st p {
+            font-size: 25px;
+            font-weight: 600;
+            color: rgba(27, 46, 94, 1)
+        }
+
+        #introduce span {
+            font-weight: 600;
+        }
+
+        #errorImg {
+            border-radius: 200px;
+            box-shadow: 0 0 10px rgba(30, 144, 255, 0.25),
+                0 0 20px rgba(30, 144, 255, 0.25),
+                0 0 30px rgba(30, 144, 255, 0.25),
+                0 0 40px rgba(30, 144, 255, 0.25),
+                0 0 100px rgba(30, 144, 255, 0.25),
+                0 0 200px rgba(30, 144, 255, 0.25);
+            width: 15%;
+            height: 15%;
+            display: none;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            /*background-color: rgba(242,172,8, 0.957);*/
+        }
+
+        .container {
+            padding-top: 100px;
+            height: 100%;
+            font-weight: 100;
+			width: 99%;
+			margin-left: auto;
+			margin-right: auto;
+            /*background-image: linear-gradient(to right, #fbc2e1, #a6c1e1);*/
+        }
+
+        .login-wrapper {
+            background-color: #ffffff79;
+            width: 99%;
+            height: 325px;
+            border-radius: 15px;
+            padding: 0 50px;
+            position: relative;
+            transform: translate(-50%, -50%);
+            background: transparent;
+        }
+
+        .header {
+            font-size: 38px;
+            font-weight: 100;
+            text-align: center;
+            line-height: 300%;
+            color: rgba(255, 255, 255, 0.808);
+        }
+
+        .btn {
+            padding: 10px;
+            text-align: center;
+            margin-top: 40px;
+            background-image: linear-gradient(to right, #fbc2e1, #a6c1e1);
+            color: #fff;
+            border-radius: 10%;
+            border: 0.5px solid #fff;
+        }
+
+        .btn:hover {
+            cursor: pointer;
+        }
+
+        ::-webkit-input-placeholder {
+            /*Webkit browsers*/
+            color: #999;
+            font-size: 16px;
+            font-weight: 100;
+            text-align: center;
+            letter-spacing: 5px;
+        }
+
+        :-moz-placeholder {
+            /*Mozilla Firefox 4 to 8*/
+            color: #999;
+            font-size: 16px;
+            font-weight: 100;
+            text-align: center;
+            letter-spacing: 5px;
+        }
+
+        ::moz-placeholder {
+            /*Mozilla Firefox 19+*/
+            color: #999;
+            font-size: 16px;
+            font-weight: 100;
+            text-align: center;
+            letter-spacing: 5px;
+        }
+
+        :-ms-input-placeholder {
+            /*Internet Explorer 10+*/
+            color: #999;
+            font-size: 16px;
+            font-weight: 100;
+            text-align: center;
+            letter-spacing: 5px;
+        }
+
+        #logoContainer {
+            padding-top: 120px;
+            margin: 0 auto;
+        }
+
+        #logo {
+            border-radius: 50px;
+            border: 1px solid rgba(240, 240, 240, 0.9);
+            margin: 0 auto;
+            height: 100px;
+            top: 30%;
+            box-shadow: 0 0 10px rgba(164, 79, 59, 0.25),
+                0 0 20px rgba(164, 79, 59, 0.25),
+                0 0 30px rgba(164, 79, 59, 0.25),
+                0 0 40px rgba(164, 79, 59, 0.25),
+                0 0 100px rgba(164, 79, 59, 0.25),
+                0 0 200px rgba(164, 79, 59, 0.25),
+                0 0 300px rgba(164, 79, 59, 0.1),
+                0 0 400px rgba(164, 79, 59, 0.05);
+        }
+
+        #search_ui_containerButton {
+            vertical-align: middle;
+            float: right;
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+        }
+
+        #search_ui {
+            height: 100%;
+            width: 100%;
+        }
+
+        .form-wrapper {
+            font-size: 0;
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+            border: 0;
+            padding: 10px;
+            background-color: #ffffff;
+            border: 2px solid #eeeddd;
+            font-size: 15px;
+            outline: none;
+            border-radius: 10px;
+            height: 30px;
+            box-shadow: 0 0 10px rgba(164, 79, 59, 0.25),
+                0 0 20px rgba(164, 79, 59, 0.25),
+                0 0 30px rgba(164, 79, 59, 0.25),
+                0 0 40px rgba(164, 79, 59, 0.25),
+                0 0 100px rgba(164, 79, 59, 0.25),
+                0 0 200px rgba(164, 79, 59, 0.25),
+                0 0 300px rgba(164, 79, 59, 0.1),
+                0 0 400px rgba(164, 79, 59, 0.05);
+        }
+
+        .input-item {
+            float: left;
+            vertical-align: middle;
+            border: 0;
+            outline: none;
+            height: 100%;
+            width: 80%;
+            font-size: 20px;
+            padding-left: 10px;
+        }
+
+        #search-list {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+            margin-top: 8%;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: rgba(240, 240, 240, 0.7);
+            z-index: 10000;
+            display: none;
+        }
+
+        #search-list li {
+            font-weight: 500;
+            width: 100%;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        #search-list li:hover {
+            font-weight: 900;
+            color: #ffffff;
+            background-color: rgba(153, 204, 255, 0.925);
+        }
+
+        .wordName-wrapper {
+            background-color: #ffffff79;
+            width: 300px;
+            height: 50px;
+            border-radius: 15px;
+            /*padding: 0 50px;
+            position: relative;
+            left: 10%;margin-left: 10%;
+            top: 20%;*/
+            transform: translate(-50%, -50%);
+            background: transparent;
+            box-shadow: 0 0 10px rgba(30, 144, 255, 0.25),
+                0 0 20px rgba(30, 144, 255, 0.25),
+                0 0 30px rgba(30, 144, 255, 0.25),
+                0 0 40px rgba(30, 144, 255, 0.25),
+                0 0 100px rgba(30, 144, 255, 0.25),
+                0 0 200px rgba(30, 144, 255, 0.25);
+        }
+
+        .intro-wrapper {
+            background-color: #ffffff79;
+            width: 99%;
+            height: 500px;
+            border-radius: 4px;
+            margin-left: auto;
+			margin-right: auto;
+            margin-top: 20px;
+            /*padding: 0 50px;
+            position: relative;
+            left: 50%;
+            top: 64%;*/
+            transform: translate(-50%, -50%);
+            background: transparent;
+            box-shadow: 0 0 10px rgba(30, 144, 255, 0.25),
+                0 0 20px rgba(30, 144, 255, 0.25),
+                0 0 30px rgba(30, 144, 255, 0.25),
+                0 0 40px rgba(30, 144, 255, 0.25),
+                0 0 100px rgba(30, 144, 255, 0.25),
+                0 0 200px rgba(30, 144, 255, 0.25);
+        }
+
+        #mainWord {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 45px;
+        }
+
+        #mainWord_lt {
+            color: #aaaaaa;
+        }
+
+        #mainWord_dh {
+            font-size: 25px;
+            font-weight: 900;
+            color: #EDA908;
+        }
+
+        #mainWord_cn {
+            font-weight: 350;
+		font-size: 50px;
+		color: white;
+        }
+		#loader {
+			display: flex;
+		    position: fixed;  
+		    top: 0;  
+		    left: 0;  
+		    width: 100%;  
+		    height: 100%;  
+		    background-color: rgba(242, 172, 8);
+		    z-index: 999999;
+		    display: flex;  
+		    justify-content: center;
+		    align-items: center;
+			opacity: 1;
+			transition: opacity 1s ease-out
+		}  
+		  
+		.loader-content {  
+		    color: white; 
+		    font-size: 20px;
+		    font-weight: bold;
+		    text-align: center;
+		}
+    </style>
+</head>
+
+<body>
+	<!--<div id="loader">
+	    <div class="loader-content">  
+	        🔍正在搜索
+	    </div>  
+	</div>-->
+    <br>
+
+    <img src="image/search_bg.jpg" id="bg" />
+
+ <nav>
+ 	<div class="menu">
+ 		<img style="height: 90%;" src="image/logo_img.png" onclick="redirectToPage()">
+ 		<div class="menu_links">
+ 			<a href="index.html" class="link">首页</a>
+ 			<a href="alphabet.html" class="link">字母表</a>
+ 			<a href="bwbazencl.html" class="link">词缀表</a>
+ 			<a href="tondha.html" class="link">时态表</a>
+ 			<a href="edusrc.html" class="link">学习资源</a>
+ 			<button class="translate" onclick="window.alert('即将上线。')">翻译</button>
+ 		</div>
+ 		<div class="menu_icon" onclick="toggleMenu(this)">
+ 			<span class="icon"></span>
+ 			<ul class="menu_content">  
+ 			    <li><a href="index.html" class="link" style="color: white">首页</a></li>  
+ 			    <li><a href="alphabet.html" class="link" style="color: white">字母表</a></li>  
+ 			    <li><a href="bwbazencl.html" class="link" style="color: white">词缀表</a></li>
+ 				<li><a href="tondha.html" class="link" style="color: white">时态表</a></li>
+ 				<li><a href="edusrc.html" class="link" style="color: white">学习资源</a></li>
+ 				<li><a onclick="window.alert('即将上线。')" class="link" style="color: #6499FF;">翻译</a></li>
+ 			</ul>
+ 		</div>
+ 	</div>
+ </nav>
+
+
+    <div class="container" id="ctn">
+        <div class="wordName-wrapper" id="wnwp">
+            <p id="mainWord"></p>
+        </div>
+        <div class="intro-wrapper" id="itwp">
+            <p id="note"></p>
+        </div>
+
+        <br><br>
+
+        <footer id="bottom_div">
+            <div id="copyright">
+                <div id="br"></div>
+                <p>所有内容纯属虚构，与现实无关，敬请理性看待</p>
+                <p id="cprt">版权所有 © 2024 DornGames | Version 2.3.5</p>
+                <p>Box3Pro : <a href="https://dao3.fun/profile/50450184">@DornGames</a> | Github : <a
+                        href="https://github.com/dornhub">@dornhub</a></p>
+                <div id="br"></div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+<script>
+    copyright();
+    new setMultiWord().setAllWord();
+    //设置单词展示区的文字
+    var mainWord = String(JSON.parse(getQueryParams(window.location.href).s));
+    if (mainWord.endsWith("s") && mainWord != 'faks' && mainWord != 'caos' && mainWord != 'mads' && mainWord != 'tons') {//不是人称代词，以s结尾，就是复数
+        type = 'pl';
+        mainWord = mainWord.slice(0, -1);
+    }
+    var mW = document.getElementById("mainWord");//找到单词
+    var detail = wordData.filter(x => x.dh == mainWord)[0];//关于该单词的详细信息
+    mW.innerHTML = `&nbsp;&nbsp;&nbsp;<span id="mainWord_dh">${mainWord.wordConvert(`irelav`)}
+        &nbsp;&nbsp;&nbsp;</span>
+        <span id="mainWord_lt">|${mainWord}|</span>`;
+    //设置单词释义区的文字
+    note.innerHTML = `<br>&nbsp;&nbsp;&nbsp;<span id="mainWord_cn">${detail.type}${detail.cn}</span>`;
+
+    //设置单词展示区css
+    var wW = document.getElementById("wnwp");//找到原div
+    wW.style.width = `${(mainWord.wordConvert(`irelav`) + mainWord).length * 20 + 3 * 15}px`;
+    wW.style.marginLeft = `calc((${wW.style.width})/2 + 30px)`;
+    //设置单词释义区css
+    var iW = document.getElementById("itwp");//找到原div
+    iW.style.width = `calc(${window.screen.width}px - 60px)`;
+    iW.style.marginTop = `250px`;
+    iW.style.marginLeft = `calc((${iW.style.width})/2 + 30px)`;
+
+
+    function submitword() {
+        var word = document.getElementById("search_ipt").value;
+        window.open(`search.html?s="${word}"`, `_self`);
+    }
+    function findWord() {//查找近似词汇
+        var list = document.getElementById("search-list");//找到下拉列表
+        if (!document.getElementById("search_ipt").value) {
+            iptChangeColor(`toWhite`);
+            list.style.display = "none";
+        } else {
+            iptChangeColor(`toBlue`);//更改input的颜色
+        }
+        var v = document.getElementById("search_ipt").value;
+        let similarChars = levenshtein.findSimilarChars_(v, wordData);
+        if (similarChars.length) {
+            showResult(similarChars);
+        } else {
+            list.style.display = "none";
+        }
+    }
+    function showResult(result) {//下拉列表的显示
+        if (!document.getElementById("search_ipt").value) {
+            iptChangeColor(`toWhite`);
+        } else {
+            iptChangeColor(`toBlue`);//更改input的颜色
+            var list = document.getElementById("search-list");//找到下拉列表
+            list.innerHTML = '';
+            list.style.width = document.getElementById("lgwp").style.width;
+            if (result.length > 0) {
+                result.forEach(item => {
+                    var li = document.createElement("li")
+                    li.textContent = `${item.dh} (${item.cn})`;
+                    li.style.width = "100%";
+                    li.onclick = function () {
+                        document.getElementById("search_ipt").value = item.dh;
+                        document.getElementById("search-list").style.display = "none";
+                    };
+                    list.appendChild(li);
+                });
+                list.style.display = "block";
+            }
+        }
+    }
+    function iptChangeColor(type) {//输入框换色
+        if (type == `toBlue`) {
+            var ipt = document.getElementById("fmwp");//找到搜索框
+            var r = 238; g = 237; b = 221, a = 0, tick = 0;//初始颜色#EEEDDD
+            var origin = { r: r, g: g, b: b, a: a };//初始颜色
+            var target = { r: 153, g: 204, b: 255, a: 1 };//目标颜色
+            ipt.style.border = `2px solid rgba(${r},${g},${b},${a})`;
+            setInterval(() => {
+                if (tick > 100) {
+                    return;
+                }//防止过头
+                r -= (origin.r - target.r) / 50;
+                g -= (origin.g - target.g) / 50;
+                b -= (origin.b - target.b) / 50;
+                a -= (origin.a - target.a) / 50;
+                ipt.style.border = `2px solid rgba(${r},${g},${b},${a})`;
+                tick++;
+            }, 7);
+        } else if (type == `toWhite`) {
+            var ipt = document.getElementById("fmwp");//找到搜索框
+            var r = 238; g = 237; b = 221;//初始颜色#EEEDDD
+            ipt.style.border = `2px solid rgba(${r},${g},${b},1)`;
+        }
+    }
+    for (var i = 1; i <= 5; i++) {//自动排列按钮
+        var a = document.getElementById("navbut" + i);
+        a.style.marginLeft = `${250 + i * 80}px`;
+        console.log(a.style.marginLeft);
+    }
+</script>
+
+</html>

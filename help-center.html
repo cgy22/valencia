@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN" >
+<head>
+<meta charset="UTF-8">
+<title>VALENCIA | 瓦来西雅大辞典</title>
+<link rel="icon" href="https://satorna.github.io/image/webIcon.png">
+<link rel="stylesheet" href="css/style.css">
+	<script>
+		window.onload = function() {
+			    var loaderContent = document.querySelector('.loader-content');  
+			    var dots = [".", "..", "..."];  
+			    var dotIndex = 0;  
+			    var loaderInterval = setInterval(function() {  
+			        loaderContent.textContent = "📎帮助中心正在加载中" + dots[dotIndex];  
+			        dotIndex = (dotIndex + 1) % dots.length; // 循环数组  
+			    }, 500); // 切换间隔时间为0.5秒  
+			    
+		    var loader = document.getElementById('loader');  
+		       
+		        setTimeout(function() {  
+		            loader.style.opacity = '0'; 
+		              
+		            // 等待过渡结束后隐藏加载画面  
+		            setTimeout(function() {  
+		                loader.style.display = 'none';  
+		            }, 500);
+		        }, 500);
+		};
+		
+	</script>
+	<script src="js/script.js"></script>
+    <script src="js/tools.js"></script>
+    <script src="js/wordData.js"></script>
+<style>
+	body{
+		background-image: url("image/light-rail.jpg");
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
+	}
+</style>
+</head>
+<body>
+	<!--<div id="loader">
+	    <div class="loader-content">  
+	        📎帮助中心正在加载中
+	    </div>  
+	</div>-->
+<nav>
+	<div class="menu">
+		<img style="height: 90%;" src="image/logo_img.png" onclick="redirectToPage()">
+		<div class="menu_links">
+			<a href="index.html" class="link">首页</a>
+			<a href="alphabet.html" class="link">字母表</a>
+			<a href="bwbazencl.html" class="link">词缀表</a>
+			<a href="tondha.html" class="link">时态表</a>
+			<a href="edusrc.html" class="link">学习资源</a>
+			<button class="translate" onclick="window.alert('即将上线。')">翻译</button>
+		</div>
+		<div class="menu_icon" onclick="toggleMenu(this)">
+			<span class="icon"></span>
+			<ul class="menu_content">  
+			    <li><a href="index.html" class="link" style="color: white">首页</a></li>  
+			    <li><a href="alphabet.html" class="link" style="color: white">字母表</a></li>  
+			    <li><a href="bwbazencl.html" class="link" style="color: white">词缀表</a></li>
+				<li><a href="tondha.html" class="link" style="color: white">时态表</a></li>
+				<li><a href="edusrc.html" class="link" style="color: white">学习资源</a></li>
+				<li><a onclick="window.alert('即将上线。')" class="link" style="color: #6499FF;">翻译</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<br><br><br><br><br>
+<section>
+	<div style="display:flex; justify-content:center;">
+		<h3>查看有关使用瓦莱希雅大辞典的帮助文档📑</h3>
+	</div>
+	<div class="article">
+		<div>
+		 <br>
+		 <h2>🗂️更新说明</h2>
+		 <br>
+		 <a href="documents.html"><button class="translate">📰查看</button></a>
+		</div>
+	</div>
+	<div class="article">
+			<div>
+			<br>
+			<h2>❔反馈中心</h2>
+			<br>
+			<a href="feedback-hub.html"><button class="translate">📰查看</button></a>
+		</div>
+	</div>
+	<div class="article">
+			<div>
+			<br>
+			<h2>⬇️下载离线应用或检查更新</h2>
+			<br>
+			<a href="https://valencia.dorn.rf.gd/download.html"><button class="translate">📰查看</button></a>
+		</div>
+	</div>
+	<div class="article">
+			<div>
+			<br>
+			<h2>📖如何使用瓦莱希雅大辞典</h2>
+			<br>
+			<a href="how-to-use.html"><button class="translate">📰查看</button></a>
+		</div>
+	</div>
+	<div class="article">
+			<div>
+			<br>
+			<h2>📦如何安装和更新瓦莱希雅大辞典</h2>
+			<br>
+			<a href="install-instruction.html"><button class="translate">📰查看</button></a>
+		</div>
+	</div>
+
+</section>
+<a href="index.html" class="link"><p class="documents">⬅️返回首页</p></a>
+
+</body>
+
+<footer class="footer-copyright">
+    <div class="copyright">
+		<br>
+            <p>所有内容纯属虚构，与现实无关，敬请理性看待</p>
+            <p id="cprt">版权所有 © 2024 DornGames | Version 2.3.5</p>
+            <p>Box3Pro : <u><a href="https://dao3.fun/profile/50450184">@DornGames</a></u>
+             | Github : <u><a href="https://github.com/dornhub">@dornhub</a></u>
+             | Author(Box3Pro) : <u><a href="https://dao3.fun/profile/448769">@云游de鸽者</a></u>
+            </p>
+			<p id="ver"></p>
+			<p>Produced by @云游de鸽者 | Adapted by 221301.</p>
+			<br>
+	</div>
+</footer>
+
+</html>
